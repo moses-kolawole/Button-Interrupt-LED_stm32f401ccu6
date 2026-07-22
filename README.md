@@ -1,8 +1,8 @@
-# Binary_Counter_LEDs_STM32F401CCU6
+# Button Interrupt LED_stm32f401ccu6
 
 ## Overview
 
-A bare-metal STM32 project demonstrating a 4-bit binary counter using four LEDs on the STM32F401CCU6 Black Pill board.
+A bare-metal STM32 project demonstrating external interrupts (EXTI) using a push button to toggle the onboard LED on the STM32F401CCU6 Black Pill board.
 
 ## Project Codes
 [Click Here to check out the project code](code)
@@ -13,53 +13,39 @@ A bare-metal STM32 project demonstrating a 4-bit binary counter using four LEDs 
 ## Hardware
 
 * STM32F401CCU6 Black Pill
-* 4 LEDs
-* 4 × 220Ω Resistors
+* Push Button
 * ST-Link V2
 * STM32CubeIDE
 
 ## Features
 
-* GPIO Output Configuration
-* Bit Manipulation
-* Binary Number Representation
-* Multi-LED Control
-* Bare-Metal Programming (No HAL)
+* GPIO Input and Output Configuration
+* External Interrupt (EXTI0)
+* NVIC Configuration
+* Interrupt Service Routine (ISR)
+* Event-Driven Programming
+
+## Project Demo video
+[Click Here to check out the project demonstration Video](https://youtu.be/W-dG8b2Q2J8)
+
 
 ## Program Flow
 
-```text id="l5n4q1"
-0000
- ↓
-0001
- ↓
-0010
- ↓
-0011
- ↓
-...
- ↓
-1111
- ↓
-Repeat
+```text
+Button Press
+      ↓
+PA0 Rising Edge
+      ↓
+EXTI0 Interrupt
+      ↓
+EXTI0_IRQHandler()
+      ↓
+Toggle PC13 LED
 ```
 
 ## Expected Output
 
-The four LEDs count in binary from **0 to 15**, continuously repeating the sequence.
+Each button press immediately toggles the onboard LED connected to **PC13**, while the `while(1)` loop remains empty.
 
-Example:
 
-```text id="pk2ef2"
-Decimal    Binary
-0          0000
-1          0001
-2          0010
-3          0011
-...
-15         1111
-```
-
-## Project Demo video
-[Click Here to check out the project demonstration Video](https://youtu.be/W-dG8b2Q2J8)
 
